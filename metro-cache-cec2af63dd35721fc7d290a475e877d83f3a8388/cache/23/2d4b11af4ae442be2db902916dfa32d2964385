@@ -1,0 +1,282 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/jose/Documentos/CLAP_ANIM/ClapAnim/components/ClapsButton.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        ClapsButton: {
+            displayName: "ClapsButton"
+        },
+        ClapBubble: {
+            displayName: "ClapBubble"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/jose/Documentos/CLAP_ANIM/ClapAnim/components/ClapsButton.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var ClapsButton = _wrapComponent("ClapsButton")(function (_Component) {
+        _inherits(ClapsButton, _Component);
+
+        function ClapsButton(props) {
+            _classCallCheck(this, ClapsButton);
+
+            var _this = _possibleConstructorReturn(this, (ClapsButton.__proto__ || Object.getPrototypeOf(ClapsButton)).call(this, props));
+
+            _this.state = {
+                count: props.count ? props.count : 0,
+                claps: []
+            };
+            _this.clap = _this.clap.bind(_this);
+            _this.keepClaping = _this.keepClaping.bind(_this);
+            _this.stopClaping = _this.stopClaping.bind(_this);
+            return _this;
+        }
+
+        _createClass(ClapsButton, [{
+            key: "animationComplete",
+            value: function animationComplete(countNum) {
+                claps = this.state.claps;
+                claps.splice(claps.indexOf(countNum), 1);
+                this.setState({
+                    claps: claps
+                });
+            }
+        }, {
+            key: "clap",
+            value: function clap() {
+                var count = this.state.count;
+                var claps = this.state.claps;
+                count++;
+                claps.push(count);
+                this.setState({
+                    count: count
+                });
+                console.log(claps);
+            }
+        }, {
+            key: "renderClaps",
+            value: function renderClaps() {
+                var _this2 = this;
+
+                return this.state.claps.map(function (countNum, index) {
+                    return _react3.default.createElement(ClapBubble, {
+                        key: index,
+                        count: countNum,
+                        animationComplete: _this2.animationComplete.bind(_this2),
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 47
+                        }
+                    });
+                });
+            }
+        }, {
+            key: "keepClaping",
+            value: function keepClaping() {
+                var _this3 = this;
+
+                this.clapTimer = setInterval(function () {
+                    return _this3.clap();
+                }, 150);
+            }
+        }, {
+            key: "stopClaping",
+            value: function stopClaping() {
+                if (this.clapTimer) {
+                    clearInterval(this.clapTimer);
+                }
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var clapIcon = this.state.count > 0 ? _react3.default.createElement(_reactNative.Image, {
+                    source: require(_dependencyMap[3], './assets/imgs/thumb-u.png'),
+                    style: {
+                        height: 27,
+                        width: 25
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 63
+                    }
+                }) : _react3.default.createElement(_reactNative.Image, {
+                    source: require(_dependencyMap[4], './assets/imgs/thumb-up.png'),
+                    style: {
+                        height: 27,
+                        width: 25
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 65
+                    }
+                });
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 67
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.TouchableOpacity,
+                        {
+                            onPress: this.clap,
+                            onPressIn: this.keepClaping,
+                            onPressOut: this.stopClaping,
+                            activeOpacity: 0.7,
+                            style: styles.clapButton,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 68
+                            }
+                        },
+                        clapIcon
+                    ),
+                    this.renderClaps()
+                );
+            }
+        }]);
+
+        return ClapsButton;
+    }(_react2.Component));
+
+    exports.default = ClapsButton;
+
+    var ClapBubble = _wrapComponent("ClapBubble")(function (_Component2) {
+        _inherits(ClapBubble, _Component2);
+
+        function ClapBubble() {
+            _classCallCheck(this, ClapBubble);
+
+            var _this4 = _possibleConstructorReturn(this, (ClapBubble.__proto__ || Object.getPrototypeOf(ClapBubble)).call(this));
+
+            _this4.state = {
+                yPosition: new _reactNative.Animated.Value(0),
+                opacity: new _reactNative.Animated.Value(0)
+            };
+            return _this4;
+        }
+
+        _createClass(ClapBubble, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                var _this5 = this;
+
+                _reactNative.Animated.parallel([_reactNative.Animated.timing(this.state.yPosition, {
+                    toValue: -120,
+                    duration: 500
+                }), _reactNative.Animated.timing(this.state.opacity, {
+                    toValue: 1,
+                    duration: 500
+                })]).start(function () {
+                    setTimeout(function () {
+                        _this5.props.animationComplete(_this5.props.count);
+                    }, 300);
+                });
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var count = this.props.count;
+                var animationStyle = {
+                    transform: [{
+                        translateY: this.state.yPosition
+                    }],
+                    opacity: this.state.opacity
+                };
+                return _react3.default.createElement(
+                    _reactNative.Animated.View,
+                    {
+                        style: [styles.clapBubble, animationStyle],
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 117
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.clapText,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 118
+                            }
+                        },
+                        " + ",
+                        count
+                    )
+                );
+            }
+        }]);
+
+        return ClapBubble;
+    }(_react2.Component));
+
+    var styles = _reactNative.StyleSheet.create({
+        container: {
+            flex: 1
+        },
+        clapButton: {
+            position: 'absolute',
+            height: 60,
+            width: 60,
+            borderRadius: 30,
+            backgroundColor: '#ecf0f1',
+            right: 20,
+            bottom: 20,
+            elevation: 3,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        clapBubble: {
+            position: 'absolute',
+            height: 60,
+            width: 60,
+            borderRadius: 30,
+            right: 20,
+            bottom: 20,
+            backgroundColor: '#15a872',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        clapText: {
+            color: 'white',
+            fontSize: 14
+        }
+    });
+});

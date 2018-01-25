@@ -1,0 +1,12 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/components/assets/imgs",
+    "width": 512,
+    "height": 512,
+    "scales": [1],
+    "hash": "222c21cf510f9c90f792d30ed7ba3284",
+    "name": "thumb-up",
+    "type": "png"
+  });
+});
